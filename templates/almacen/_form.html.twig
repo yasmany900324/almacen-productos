@@ -1,0 +1,58 @@
+{{ form_start(form) }}
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Nombre:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.nombre) }}
+            <div class="form-error">
+                {{ form_errors(form.nombre) }}
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Dirección:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.direccion) }}
+            <div class="form-error">
+                {{ form_errors(form.direccion) }}
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Responsable:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.responsable) }}
+            <div class="form-error">
+                {{ form_errors(form.responsable) }}
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Teléfono:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.telefono) }}
+            <div class="form-error">
+                {{ form_errors(form.telefono) }}
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Locación Latitud:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.locacionlat) }}
+            <div class="form-error">
+                {{ form_errors(form.locacionlat) }}
+            </div>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Locación Longitud:</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.locacionlong) }}
+            <div class="form-error">
+                {{ form_errors(form.locacionlong) }}
+            </div>
+        </div>
+    </div>
+    {{ form_rest(form) }}
+    <button class="btn btn-primary" id="formAddAlmacenButtonSave">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}

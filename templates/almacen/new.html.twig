@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Almacén{% endblock %}
+
+{% block body %}
+    <h1>Crear nuevo almacén</h1>
+
+    {{ include('almacen/_form.html.twig') }}
+
+    <a id="formAddAlmacenButtonGoBack" href="{{ path('almacen_index') }}"><button class="btn btn-secondary" >Ir al listado</button></a>
+{% endblock %}

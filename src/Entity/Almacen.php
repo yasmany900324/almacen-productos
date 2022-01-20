@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=AlmacenRepository::class)
+ * @UniqueEntity("nombre",message="Ya existe un Almacén con el nombre {{ value }}")
  */
 class Almacen
 {
@@ -22,29 +24,71 @@ class Almacen
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Json(
-     *     message = "Haz introducido un Json incorrecto."
+     * @Assert\NotBlank(message="Este campo es obligatorio")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 10,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
      * )
      */
-    private $locacion;
+    private $locacionlat;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Este campo es obligatorio") 
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 10,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
+     * )
+     */
+    private $locacionlong;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Este campo es obligatorio")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
+     * )
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 512,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
+     * )
      */
     private $direccion;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Este campo es obligatorio") 
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
+     * ) 
      */
     private $responsable;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Este campo es obligatorio")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 12,
+     *      minMessage = "Debe introducir al menos {{ limit }} caracteres",
+     *      maxMessage = "No puede introducir más de {{ limit }} caracteres"
+     * ) 
      */
     private $telefono;
 
@@ -61,18 +105,6 @@ class Almacen
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getLocacion(): ?string
-    {
-        return $this->locacion;
-    }
-
-    public function setLocacion(string $locacion): self
-    {
-        $this->locacion = $locacion;
-
-        return $this;
     }
 
     public function getNombre(): ?string
@@ -149,6 +181,30 @@ class Almacen
                 $compra->setAlmacenDestino(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocacionlat(): ?string
+    {
+        return $this->locacionlat;
+    }
+
+    public function setLocacionlat(string $locacionlat): self
+    {
+        $this->locacionlat = $locacionlat;
+
+        return $this;
+    }
+
+    public function getLocacionlong(): ?string
+    {
+        return $this->locacionlong;
+    }
+
+    public function setLocacionlong(string $locacionlong): self
+    {
+        $this->locacionlong = $locacionlong;
 
         return $this;
     }

@@ -26,6 +26,12 @@ class MenuController extends AbstractController
             $items['categoria']['class'] = "active";
         }
 
+        $items['almacen']['title'] = 'Almacenes';
+        $items['almacen']['url'] = $this->generateUrl('almacen_index');
+        if (in_array($route_name, ['almacen_index', 'almacen_new', 'almacen_show', 'almacen_edit'])) {
+            $items['almacen']['class'] = "active";
+        }
+
         return $this->render('menu/index.html.twig', [
             'items' => $items,
         ]);

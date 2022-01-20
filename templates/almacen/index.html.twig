@@ -1,5 +1,74 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Almacenes{% endblock %}
+
 {% block body %}
-    <h1>Your lucky number is {{ number }}</h1>
+    <h1>Almacenes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Responsable</th>
+                <th>Teléfono</th>
+                <th>Locación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for almacen in almacens %}
+            <tr>
+                <td>{{ almacen.nombre }}</td>
+                <td>{{ almacen.direccion }}</td>
+                <td>{{ almacen.responsable }}</td>
+                <td>{{ almacen.telefono }}</td>
+                <td>[lat: {{ almacen.locacionlat }},  long: {{ almacen.locacionlong }} ]</td>
+                <td>
+                <!-- Button trigger modal -->
+                <a class="row-icon" href="{{ path('almacen_show', {'id': almacen.id}) }}" onclick="return false;">
+                    <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#modalShow-{{almacen.id}}"></i>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="modalShow-{{almacen.id}}" tabindex="-1" aria-labelledby="modalShow{{almacen.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mostrar Almacén</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label><b>Nombre:</b> {{ almacen.nombre }}</label>
+                        </div>
+                        <div class="row">
+                            <label><b>Dirección:</b> {{ almacen.direccion }}</label>
+                        </div>
+                        <div class="row">
+                            <label><b>Responsable:</b> {{ almacen.responsable }}</label>
+                        </div>
+                        <div class="row">
+                            <label><b>Teléfono:</b> {{ almacen.telefono }}</label>
+                        </div>
+                        <div class="row">
+                            <label><b>Locación:</b> [lat: {{ almacen.locacionlat }},  long: {{ almacen.locacionlong }} ]</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <a class="row-icon" href="{{ path('almacen_edit', {'id': almacen.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no hay elementos en la base de datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a  id="almacenIndexAddButton" href="{{ path('almacen_new') }}"><button type="button" class="btn btn-primary">Nuevo almacén</button></a>
 {% endblock %}

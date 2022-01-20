@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Almacén{% endblock %}
+
+{% block body %}
+    <h1>Editar Almacén</h1>
+
+    {{ include('almacen/_form.html.twig', {'button_label': 'Guardar cambios'}) }}
+
+    <a href="{{ path('almacen_index') }}"><button class="btn btn-secondary" id="formEdtAlmacenButtonBack">Ir al listado</button></a>
+
+    {{ include('almacen/_delete_form.html.twig') }}
+{% endblock %}

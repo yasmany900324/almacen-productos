@@ -181,3 +181,26 @@ h6, .h6 {
     float: right;
     margin-right: 20px;
 }
+#almacenIndexAddButton{
+    float: right;
+    margin-right: 20px;
+}
+#formAddAlmacenButtonSave{
+    float: right;
+    margin-right: 20px;
+}
+#formAddAlmacenButtonGoBack{
+    float: right;
+    margin-right: 20px;
+}
+#formEdtAlmacenButtonBack{
+    float: right;
+    margin-right: 20px;
+}
+#deleteAlmacenButton{
+    float: right;
+    margin-right: 20px;
+}
+.form-error{
+    color: red !important;
+}

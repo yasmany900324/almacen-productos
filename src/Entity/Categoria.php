@@ -6,9 +6,12 @@ use App\Repository\CategoriaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=CategoriaRepository::class)
+ * @UniqueEntity("nombre",message="Ya existe una Categoría con el nombre {{ value }}")
  */
 class Categoria
 {
