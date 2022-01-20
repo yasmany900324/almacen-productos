@@ -13,9 +13,6 @@ class DefaultController extends AbstractController
      */
     public function home()
     {
-        $number = random_int(0, 100);
-        return $this->render('home/index.html.twig', [
-            'number' => $number,
-        ]);
+        return $this->render('home/index.html.twig', []);
     }
 }
