@@ -201,6 +201,17 @@ h6, .h6 {
     float: right;
     margin-right: 20px;
 }
+#addNuevoProductoButton{
+    float: right;
+    margin-right: 20px;
+}
 .form-error{
     color: red !important;
+}
+.nav-item.active{
+    font-weight: 600;
+}
+.table-container{
+    max-width: calc(100% - 20px);
+    overflow: auto;
 }

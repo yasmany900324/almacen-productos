@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos{% endblock %}
+
+{% block body %}
+    <h1>Lista de Productos</h1>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Upc</th>
+                    <th>Cantidad</th>
+                    <th>Marca</th>
+                    <th>Foto</th>
+                    <th>FechaExpiracion</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.upc }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>{{ producto.marca }}</td>
+                    <td>{{ producto.foto }}</td>
+                    <td>{{ producto.fechaExpiracion ? producto.fechaExpiracion|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                    <!-- Button trigger modal -->
+                    <a class="row-icon" href="{{ path('producto_show', {'id': producto.id}) }}" onclick="return false;">
+                        <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#modalShow-{{producto.id}}"></i>
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalShow-{{producto.id}}" tabindex="-1" aria-labelledby="modalShow{{producto.id}}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Mostrar Categoría</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <label><b>Nombre:</b> {{ producto.nombre }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>UPC:</b> {{ producto.upc }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Cantidad:</b> {{ producto.cantidad }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Precio Costo:</b> {{ producto.precioCosto }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Precio Venta:</b> {{ producto.precioVenta }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Peso en Gramos:</b> {{ producto.pesoGramos }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Peso en Onzas:</b> {{ producto.pesoOnzas }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Peso en Libras:</b> {{ producto.pesoLibras }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Marca:</b> {{ producto.marca }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Descripción en Español:</b> {{ producto.descripcionEs }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Descripción en Inglés:</b> {{ producto.descripcionEn }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Foto:</b> {{ producto.foto }}</label>
+                            </div>
+                            <div class="row">
+                                <label><b>Fecha de Expiración:</b> {{ producto.fechaExpiracion ? producto.fechaExpiracion|date('Y-m-d H:i:s') : '' }}</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                        <a href="{{ path('producto_edit', {'id': producto.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="15">no hay elementos en la base de datos</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('producto_new') }}" id="addNuevoProductoButton" ><button type="button" class="btn btn-primary">Nuevo Producto</button></a>
+{% endblock %}

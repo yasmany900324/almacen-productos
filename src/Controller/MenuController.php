@@ -32,6 +32,12 @@ class MenuController extends AbstractController
             $items['almacen']['class'] = "active";
         }
 
+        $items['producto']['title'] = 'Productos';
+        $items['producto']['url'] = $this->generateUrl('producto_index');
+        if (in_array($route_name, ['producto_index', 'producto_new', 'producto_show', 'producto_edit'])) {
+            $items['producto']['class'] = "active";
+        }
+
         return $this->render('menu/index.html.twig', [
             'items' => $items,
         ]);
