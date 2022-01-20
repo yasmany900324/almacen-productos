@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Categoría{% endblock %}
+
+{% block body %}
+    <h1>Editar Categoría</h1>
+
+    {{ include('categoria/_form.html.twig', {'button_label': 'Guardar cambios', 'button_id': 'editarCategoriaButtonId'}) }}
+
+    <a id="editarCategoriaAtrasButtonId" href="{{ path('categoria_index') }}"><button type="button" class="btn btn-secondary">Ir Atrás</button></a>
+
+    {{ include('categoria/_delete_form.html.twig', {'button_id': 'editarCategoriaDeleteButtonId'}) }}
+{% endblock %}

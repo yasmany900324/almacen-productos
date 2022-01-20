@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorías{% endblock %}
+
+{% block body %}
+    <h1>Categorías</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.id }}</td>
+                <td>{{ categoria.nombre }}</td>
+                <td>{{ categoria.descripcion }}</td>
+                <td>
+                <!-- Button trigger modal -->
+                <a class="row-icon" href="{{ path('categoria_show', {'id': categoria.id}) }}" onclick="return false;">
+                    <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#modalShow-{{categoria.id}}"></i>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="modalShow-{{categoria.id}}" tabindex="-1" aria-labelledby="modalShow{{categoria.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mostrar Categoría</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <label><b>Nombre:</b> {{ categoria.nombre }}</label>
+                        </div>
+                        <div class="row">
+                            <label><b>Descripción:</b> {{ categoria.descripcion }}</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <a class="row-icon" href="{{ path('categoria_edit', {'id': categoria.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a id="categoria-index-add-button" href="{{ path('categoria_new') }}"><button type="button" class="btn btn-primary">Nueva Categoría</button></a>
+{% endblock %}
